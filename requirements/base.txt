@@ -7,7 +7,7 @@ hvac
 jq
 futurelog
 prometheus-client
-pydantic[dotenv]
+pydantic[dotenv] < 2
 pyyaml
 requests
 scp

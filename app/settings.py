@@ -36,6 +36,9 @@ class Settings(BaseSettings):
     minion_files_local_directory: Optional[str]
     minion_files_nexus_location: Optional[str]
 
+    python_build_version: Optional[str]
+    python_build_archive_url: Optional[str]
+
     ##
     # SONiC devices list
     ##

@@ -9,6 +9,7 @@ from app.deployers import (
     ConfigDeployer,
     GrainsDeployer,
     MinionDeployer,
+    PythonBuildDeployer,
     SystemdDeployer,
 )
 from app.exceptions import DeviceConnectionException, UnknownSonicVersionException
@@ -60,6 +61,11 @@ class Device:
             "config": ConfigDeployer(self.ssh, self.hostname, self.sonic_version),
             "systemd": SystemdDeployer(self.ssh, self.hostname, self.sonic_version),
         }
+
+        if CONF.python_build_archive_url and CONF.python_build_version:
+            self.components["python_build"] = PythonBuildDeployer(
+                self.ssh, self.hostname, self.sonic_version
+            )
 
     async def disconnect(self) -> None:
         """Disconnect SSH."""

@@ -77,8 +77,12 @@ class SystemdDeployer(Deployer):
 
     async def deploy(self) -> bool:
         """Deploys salt-minion service and timer/service for some scripts."""
+        salt_minion_filename = "salt-minion.service"
+        if CONF.python_build_archive_url and CONF.python_build_version:
+            salt_minion_filename = "salt-minion-python-build.service"
+
         systemd_files = [
-            "salt-minion.service",
+            salt_minion_filename,
             "salt-update-grains.service",
             "salt-update-grains.timer",
         ]
